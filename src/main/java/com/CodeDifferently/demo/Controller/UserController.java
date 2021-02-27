@@ -30,12 +30,12 @@ public class UserController {
         return (ResponseEntity<User>) ResponseEntity.ok().body(this.userService.createUser(user));
     }
 
-    @PutMapping("user/{id}")
+    @PutMapping("/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, User user) {
         return ResponseEntity.ok().body(this.userService.updateUser(id, user));
     }
 
-    @DeleteMapping("/person/{id}")
+    @DeleteMapping("/user/{id}")
         public HttpStatus deleteUser(@PathVariable long id){
         this.userService.deleteById(id);
         return HttpStatus.OK;

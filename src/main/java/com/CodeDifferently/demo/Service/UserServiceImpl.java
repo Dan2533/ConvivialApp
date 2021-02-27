@@ -6,7 +6,7 @@ import com.CodeDifferently.demo.Model.User;
 import com.CodeDifferently.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -23,18 +23,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, User user) {
-        Optional< User > productDb = this.userRepository.findById(user.getId());
-        if (productDb.isPresent()) {
-            User userUpdate = productDb.get();
-            userUpdate.setId(user.getId());
-            userUpdate.setName(user.getName());
+    public User updateUser(Long profileId, User user) {
+        Optional< User > userDb = this.userRepository.findById(user.getProfileId());
+        if (userDb.isPresent()) {
+            User userUpdate = userDb.get();
+            userUpdate.setProfileId(user.getProfileId());
+            userUpdate.setFirstName(user.getFirstName());
+            userUpdate.setLastName(user.getLastName());
             userUpdate.setEmailAddress(user.getEmailAddress());
-            userUpdate.setFavoriteActivities(user.getFavoriteActivities());
             userRepository.save(userUpdate);
             return userUpdate;
         } else {
-            throw new ResourceNotFoundException("Record not found with id : " + user.getId());
+            throw new ResourceNotFoundException("Record not found with id : " + user.getProfileId());
         }
     }
     @Override

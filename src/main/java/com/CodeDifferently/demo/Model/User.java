@@ -5,37 +5,55 @@ import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
-@Table(name ="Activities")
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long profileId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "emailAddress")
     private String emailAddress;
 
-    @Column(name = "favoriteActivities")
-    private ArrayList<Activity> favoriteActivities;
 
-
-    public long getId() {
-        return Id;
+    public User() {
     }
 
-    public void setId(long id) {
-        Id = id;
+    public User(long profileId, String firstName, String lastName, String emailAddress) {
+       this.profileId = profileId;
+       this.firstName = firstName;
+       this.lastName = lastName;
+       this.emailAddress = emailAddress;
     }
 
-    public String getName() {
-        return name;
+    public long getProfileId() {
+        return profileId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProfileId(long profileId) {
+        this.profileId = profileId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmailAddress() {
@@ -45,14 +63,4 @@ public class User {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-
-    public ArrayList<Activity> getFavoriteActivities() {
-        return favoriteActivities;
-    }
-
-    public void setFavoriteActivities(ArrayList<Activity> favoriteActivities) {
-        this.favoriteActivities = favoriteActivities;
-    }
-
-
 }
